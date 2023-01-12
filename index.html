@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>dotbim.three.js</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%
+        }
+    </style>
+
+    <!--  Three.js  -->
+    <script src="./js/dotbim.three.js"></script>
+    <script src="./js/three.min.js"></script>
+    <script src="./js/controls/OrbitControls.js"></script>
+</head>
+
+<body>
+    <script>
+        // DefaultUp
+        THREE.Object3D.DefaultUp.set(0, 0, 1);
+
+        // Create an empty scene
+        var scene = new THREE.Scene();
+
+        // Create a basic perspective camera
+        var cameraDistance = 10;
+        var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+        //var viewSize = 15;
+        //var aspectRatio = window.innerWidth / window.innerHeight;
+        //var camera = new THREE.OrthographicCamera(
+        //    -aspectRatio * viewSize / 2, aspectRatio * viewSize / 2,
+        //    viewSize / 2, -viewSize / 2,
+        //    0.1, 1000);
+
+        camera.position.set(cameraDistance, -cameraDistance, cameraDistance)
+
+        // Create a renderer with Antialiasing
+        var renderer = new THREE.WebGLRenderer({
+            //antialias: true,
+            //autoSize: true,
+            //alpha: true
+        });
+
+        //renderer.domElement.addEventListener('mousedown', onDocumentMouseDown, false);
+
+        // PixelRatio
+        renderer.setPixelRatio(window.devicePixelRatio);
+
+        // Configure renderer clear color
+        renderer.setClearColor("#121212");
+
+        // Configure renderer size
+        renderer.setSize(window.innerWidth, window.innerHeight);
+
+        // Append Renderer to DOM
+        document.body.appendChild(renderer.domElement);
+
+        // ------------------------------------------------
+        // FUN STARTS HERE
+        // ------------------------------------------------
+
+        // Light
+        scene.add(new THREE.HemisphereLight(0xcccccc, 0x111111));
+        scene.add(new THREE.AmbientLight(0x555555));
+
+
+        // TimeOut Loop
+        var timeout = 1000;
+
+        // Render Loop
+        var renderLoop = function () {
+            setTimeout("renderLoop()", timeout);
+            render();
+        };
+
+        // Render
+        var render = function () {
+            // Render the scene
+            renderer.render(scene, camera);
+        };
+
+        // OrbitControls
+        var controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.addEventListener('change', render);
+        controls.update();
+
+        // Render
+        window.onload = function () {
+            
+            renderLoop();
+
+            let dotbim = {
+                schema_version: "1.0.0",
+                meshes: [
+                    {
+                        mesh_id: 0,
+                        coordinates: [
+                            -1,
+                            -1,
+                            -1,
+                            1,
+                            -1,
+                            -1,
+                            1,
+                            -1,
+                            1,
+                            -1,
+                            -1,
+                            1,
+                            -1,
+                            1,
+                            -1,
+                            1,
+                            1,
+                            -1,
+                            1,
+                            1,
+                            1,
+                            -1,
+                            1,
+                            1
+                        ],
+                        indices: [
+                            0,
+                            1,
+                            2,
+                            0,
+                            2,
+                            3,
+                            0,
+                            1,
+                            4,
+                            1,
+                            4,
+                            5,
+                            0,
+                            4,
+                            3,
+                            4,
+                            3,
+                            7,
+                            1,
+                            2,
+                            5,
+                            2,
+                            5,
+                            6,
+                            2,
+                            3,
+                            7,
+                            2,
+                            6,
+                            7,
+                            4,
+                            5,
+                            7,
+                            5,
+                            6,
+                            7
+                        ],
+                        colors: [
+                            0, 0, 255, 255,
+                            0, 0, 255, 255,
+                            200, 0, 0, 255,
+                            200, 0, 0, 255,
+                            200, 200, 200, 255,
+                            200, 200, 200, 255,
+                            0, 255, 255, 255,
+                            0, 255, 255, 255,
+                            255, 0, 255, 255,
+                            255, 0, 255, 255,
+                            0, 255, 0, 255,
+                            0, 255, 0, 255,
+                        ]
+                    },
+                    {
+                        mesh_id: 1,
+                        coordinates: [
+                            -1,
+                            -1,
+                            -1,
+                            1,
+                            -1,
+                            -1,
+                            1,
+                            -1,
+                            1,
+                            -1,
+                            -1,
+                            1,
+                            -1,
+                            1,
+                            -1,
+                            1,
+                            1,
+                            -1,
+                            1,
+                            1,
+                            1,
+                            -1,
+                            1,
+                            1
+                        ],
+                        indices: [
+                            0,
+                            1,
+                            2,
+                            0,
+                            2,
+                            3,
+                            0,
+                            1,
+                            4,
+                            1,
+                            4,
+                            5,
+                            0,
+                            4,
+                            3,
+                            4,
+                            3,
+                            7,
+                            1,
+                            2,
+                            5,
+                            2,
+                            5,
+                            6,
+                            2,
+                            3,
+                            7,
+                            2,
+                            6,
+                            7,
+                            4,
+                            5,
+                            7,
+                            5,
+                            6,
+                            7
+                        ],
+                        colors: [
+                            200, 0, 0, 255,
+                            200, 0, 0, 255,
+                            0, 200, 0, 255,
+                            0, 200, 0, 255,
+                            0, 0, 200, 255,
+                            0, 0, 200, 255,
+                            100, 100, 0, 255,
+                            100, 100, 0, 255,
+                            100, 0, 100, 255,
+                            100, 0, 100, 255,
+                            0, 100, 100, 255,
+                            0, 100, 100, 255,
+                        ]
+                    }
+                ],
+                elements: [
+                    {
+                        mesh_id: 0,
+                        vector: {
+                            x: 0,
+                            y: 0,
+                            z: 0
+                        },
+                        rotation: {
+                            qx: 0,
+                            qy: 0,
+                            qz: 0,
+                            qw: 1
+                        },
+                        color: {
+                            r: 255,
+                            g: 255,
+                            b: 255,
+                            a: 255
+                        },
+                        face_colors: [
+                            200, 0, 0, 255,
+                            200, 0, 0, 255,
+                            0, 200, 0, 255,
+                            0, 200, 0, 255,
+                            0, 0, 200, 255,
+                            0, 0, 200, 255,
+                            100, 100, 0, 255,
+                            100, 100, 0, 255,
+                            100, 0, 100, 255,
+                            100, 0, 100, 255,
+                            0, 100, 100, 255,
+                            0, 100, 100, 255]
+                    },
+                    {
+                        mesh_id: 0,
+                        vector: {
+                            x: -3,
+                            y: 0,
+                            z: 0
+                        },
+                        rotation: {
+                            qx: 0,
+                            qy: 0,
+                            qz: 0,
+                            qw: 1
+                        },
+                        color: {
+                            r: 255,
+                            g: 255,
+                            b: 255,
+                            a: 255
+                        }
+                    },
+                    {
+                        mesh_id: 0,
+                        vector: {
+                            x: -3,
+                            y: 0,
+                            z: 3
+                        },
+                    },
+                    {
+                        mesh_id: 1,
+                        vector: {
+                            x: 0,
+                            y: 0,
+                            z: 3
+                        },
+                        rotation: {
+                            qx: 0,
+                            qy: 0,
+                            qz: 0,
+                            qw: 1
+                        },
+                    }
+                ]
+            }
+
+            dotbim_CreateMeshes(dotbim).forEach(mesh => {
+                scene.add(mesh);
+            });
+
+            dotbim_CreateMeshes().forEach(mesh => {
+                scene.add(mesh);
+            });
+
+            zoomCameraToSelection(camera, controls, scene.children);
+        }
+
+        // Resize
+        window.addEventListener("resize", function () {
+            var aspect = window.innerWidth / window.innerHeight;
+            if (camera.aspect) {
+                camera.aspect = aspect;
+            }
+
+            if (camera.left) {
+                camera.left = -aspect * viewSize / 2;
+                camera.right = aspect * viewSize / 2;
+                camera.top = viewSize / 2;
+                camera.bottom = -viewSize / 2;
+            }
+
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+
+            render();
+        })
+
+        function zoomCameraToSelection(camera, controls, selection, fitOffset = 1.2) {
+
+            const box = new THREE.Box3();
+
+            for (const object of selection) box.expandByObject(object);
+
+            const size = box.getSize(new THREE.Vector3());
+            const center = box.getCenter(new THREE.Vector3());
+
+            const maxSize = Math.max(size.x, size.y, size.z);
+            const fitHeightDistance = maxSize / (2 * Math.atan(Math.PI * camera.fov / 360));
+            const fitWidthDistance = fitHeightDistance / camera.aspect;
+            const distance = fitOffset * Math.max(fitHeightDistance, fitWidthDistance);
+
+            const direction = controls.target.clone()
+                .sub(camera.position)
+                .normalize()
+                .multiplyScalar(distance);
+
+            controls.maxDistance = distance * 10;
+            controls.target.copy(center);
+
+            camera.near = distance / 100;
+            camera.far = distance * 100;
+            camera.updateProjectionMatrix();
+
+            camera.position.copy(controls.target).sub(direction);
+
+            controls.update();
+
+        }
+
+
+        var CameraReset = function () {
+
+            // console.log(JSON.stringify(camera.position));
+            camera.position.set(10, -10, 10);
+
+            if (camera.zoom) {
+                camera.zoom = 1;
+            }
+
+            controls.reset();
+            render();
+        };
+
+        var SetAntialias = function (value) {
+            renderer.antialias = value;
+            render();
+        };
+
+        var AddLine = function (value) {
+            var pointsModel = JSON.parse(value);
+            // console.log(JSON.stringify(pointsModel));
+
+            const points = [];
+            for (var i = 0; i < pointsModel.Vectors.length; i++) {
+                var point = pointsModel.Vectors[i];
+                points.push(new THREE.Vector3(point.X, point.Y, point.Z));
+                console.log(JSON.stringify(point));
+            }
+
+            var color = "#eeeeee";
+            if (pointsModel.Color) color = pointsModel.Color;
+
+            var geometry = new THREE.BufferGeometry().setFromPoints(points);
+            var line = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: color }));
+            scene.add(line);
+
+            render();
+        };
+
+        var AddMesh = function (value) {
+            //console.log(value);
+            var meshModel = JSON.parse(value);
+
+            var geometry = new THREE.BufferGeometry();
+
+            var facesModel = [];
+            if (meshModel.Faces) {
+                facesModel = meshModel.Faces;
+                //console.log(facesModel)
+                //console.log(JSON.stringify(facesModel));
+            }
+            else {
+                facesModel.push(meshModel);
+            }
+
+            const indices = [];
+            const vertices = [];
+            const normals = [];
+            const colors = [];
+
+            facesModel.forEach(face => {
+
+                for (var i = 0; i < face.Indexes.length; i += 1) {
+                    var point = face.Vertices[face.Indexes[i]];
+                    vertices.push(point.X, point.Y, point.Z);
+                    //console.log(JSON.stringify(point));
+
+                    var normal = face.Normals[i];
+                    normals.push(normal.X, normal.Y, normal.Z);
+
+                    var color = new THREE.Color(face.Colors[i]);
+                    colors.push(color.r, color.g, color.b);
+
+                    indices.push(indices.length);
+                }
+
+            });
+
+            geometry.setIndex(indices);
+            geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+            geometry.setAttribute('normal', new THREE.Float32BufferAttribute(normals, 3));
+            geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+            geometry.computeBoundingSphere();
+
+            var material = new THREE.MeshNormalMaterial();
+
+            // MeshStandardMaterial
+            // MeshPhongMaterial
+            material = new THREE.MeshPhongMaterial({
+                side: THREE.DoubleSide,
+                vertexColors: true,
+                //color: "#ee1212"
+            });
+
+            //if (meshModel.Color)
+            //    material.color = meshModel.Color;
+
+            //material.side = THREE.DoubleSide;
+
+            var mesh = new THREE.Mesh(geometry, material);
+            scene.add(mesh);
+
+            render();
+        };
+
+        var Clear = function () {
+            while (scene.children.length > 0) {
+                var children = scene.children[0];
+                scene.remove(children);
+            }
+            render();
+        };
+
+    </script>
+</body>
+
+</html>
