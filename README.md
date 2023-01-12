@@ -1,6 +1,6 @@
 # dotbim.three.js
 
-Test (dotbim)[https://github.com/paireks/dotbim] with (three.js)[https://github.com/mrdoob/three.js] using release version (r147)[https://github.com/mrdoob/three.js/releases/tag/r147].
+Test [dotbim](https://github.com/paireks/dotbim) with [three.js](https://github.com/mrdoob/three.js) using release version [r147](https://github.com/mrdoob/three.js/releases/tag/r147).
 
 ## dotbim
 
