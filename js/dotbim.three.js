@@ -17,6 +17,10 @@ function dotbim_CreateMeshes(dotbim) {
         dotbim = JSON.parse(dotbim);
 
     const { schema_version, meshes, elements, info } = dotbim;
+    
+    if (!meshes || !elements) 
+        return [];
+
     const geometrys = dotbim_Meshes2Geometrys(meshes);
     return dotbim_Elemments2Meshes(elements, geometrys);
 }
@@ -33,6 +37,10 @@ function dotbim_Elemment2Mesh(element, geometrys) {
         side: THREE.DoubleSide,
         transparent: true,
     });
+
+    if (color) {
+        if (color.r === 0 & color.g === 0 & color.b === 0 & color.a === 0) color = null;
+    }
 
     // Support `face_colors` in element
     if (face_colors) {
@@ -86,7 +94,7 @@ function dotbim_Mesh2GeometryColor(mesh) {
         buffer_colors = createFaceColors(colors, 3, 4 * indices.length);
         geometry.setAttribute('color', new THREE.Float32BufferAttribute(buffer_colors, 4));
     }
-
+    
     geometry.computeVertexNormals();
     return geometry;
 }
