@@ -24,6 +24,13 @@ Move and test colors for each face using in the mesh object.
 
 In this example the color in the `element` is blending with the color in the mesh, need to remove the `face_colors` from element and move to mesh `colors` and remove the color from element.
 
+## Usage
+
+Download either `dotbim.three.js` or `dotbim.three.min.js` files.
+Use it directly in your browser application: `<script src="./path-to-dotbim-file/dotbim.three.min.js"></script>`
+
+Example usage can be seen in the [STEP Viewer](https://githubdragonfly.github.io/viewers/templates/STEP%20Viewer.html) with the code available in this [repository](https://github.com/GitHubDragonFly/GitHubDragonFly.github.io/tree/main/viewers/).
+
 ## License
 
 This package is [licensed](LICENSE) under the [MIT Licence](https://en.wikipedia.org/wiki/MIT_License).
