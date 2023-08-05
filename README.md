@@ -32,49 +32,49 @@ Download either `dotbim.three.js` or `dotbim.three.min.js` file. Use it directly
 
 Then call its function as in the following example:
 
-```
-   function loadBIM() {
-     // previously created: var scene = new THREE.Scene(), mesh = new THREE.Object3D(), edges = new THREE.Group();
-     // selected_bim_file in this case would represent an actual URL to the BIM model
-     // for local file browsing it would have to be replaced with:
-     //    URL.createObjectURL( selected_bim_file )
-     // and eventually revoked with:
-     //    URL.revokeObjectURL( selected_bim_file )
+```js
+function loadBIM() {
+  // previously created: var scene = new THREE.Scene(), mesh = new THREE.Object3D(), edges = new THREE.Group();
+  // selected_bim_file in this case would represent an actual URL to the BIM model
+  // for local file browsing it would have to be replaced with:
+  //    URL.createObjectURL( selected_bim_file )
+  // and eventually revoked with:
+  //    URL.revokeObjectURL( selected_bim_file )
 
-     new THREE.FileLoader().load( selected_bim_file, async function( text ) {
+  new THREE.FileLoader().load( selected_bim_file, async function( text ) {
 
-       let mesh_count = 1;
+    let mesh_count = 1;
 
-       // the following is the actual function from the dotbim.three.js file
+    // the following is the actual function from the dotbim.three.js file
 
-       dotbim_CreateMeshes( text ).forEach( bim_mesh => {
+    dotbim_CreateMeshes( text ).forEach( bim_mesh => {
 
-         // name the mesh if required for any later code
+      // name the mesh if required for any later code
 
-         if (bim_mesh.name) {
-           if (bim_mesh.name === '') {
-             bim_mesh.name = 'mesh_' + mesh_count;
-             mesh_count += 1;
-           }
-         } else {
-           bim_mesh[ 'name' ] = 'mesh_' + mesh_count;
-           mesh_count += 1;
-         }
+      if (bim_mesh.name) {
+        if (bim_mesh.name === '') {
+          bim_mesh.name = 'mesh_' + mesh_count;
+          mesh_count += 1;
+        }
+      } else {
+        bim_mesh[ 'name' ] = 'mesh_' + mesh_count;
+        mesh_count += 1;
+      }
 
-         // store the internally created edges if required
+      // store the internally created edges if required
 
-         if ( bim_mesh.edges ) edges.add( bim_mesh.edges );
+      if ( bim_mesh.edges ) edges.add( bim_mesh.edges );
 
-         // add the bim_mesh to the model that will be displayed
+      // add the bim_mesh to the model that will be displayed
 
-         mesh.add( bim_mesh );
-       });
+      mesh.add( bim_mesh );
+    });
 
-       mesh.rotateX( - Math.PI / 2 );
+    mesh.rotateX( - Math.PI / 2 );
 
-       scene.add( mesh );
-     });
-   }
+    scene.add( mesh );
+  });
+}
 ```
 
 Practical usage example can be seen in the [STEP Viewer](https://githubdragonfly.github.io/viewers/templates/STEP%20Viewer.html) with the code available in this [repository](https://github.com/GitHubDragonFly/GitHubDragonFly.github.io/tree/main/viewers/).
