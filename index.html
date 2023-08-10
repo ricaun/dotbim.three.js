@@ -63,6 +63,24 @@
         // Append Renderer to DOM
         document.body.appendChild(renderer.domElement);
 
+        // dragover and drop
+        document.addEventListener('dragover', function (event) {
+            event.preventDefault();
+        });
+        document.addEventListener('drop', function (event) {
+            event.preventDefault();
+            var files = event.dataTransfer.files;
+            Clear();
+            for (let file of files) {
+                console.log(file);
+                const reader = new FileReader();
+                reader.addEventListener('load', (event) => {
+                    LoadDotBim(event.target.result);
+                });
+                reader.readAsText(file);
+            }
+        });
+
         // ------------------------------------------------
         // FUN STARTS HERE
         // ------------------------------------------------
