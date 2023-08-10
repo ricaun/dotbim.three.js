@@ -63,6 +63,24 @@
         // Append Renderer to DOM
         document.body.appendChild(renderer.domElement);
 
+        // dragover and drop
+        document.addEventListener('dragover', function (event) {
+            event.preventDefault();
+        });
+        document.addEventListener('drop', function (event) {
+            event.preventDefault();
+            var files = event.dataTransfer.files;
+            Clear();
+            for (let file of files) {
+                console.log(file);
+                const reader = new FileReader();
+                reader.addEventListener('load', (event) => {
+                    LoadDotBim(event.target.result);
+                });
+                reader.readAsText(file);
+            }
+        });
+
         // ------------------------------------------------
         // FUN STARTS HERE
         // ------------------------------------------------
@@ -268,8 +286,8 @@
                     {
                         mesh_id: 0,
                         vector: {
-                            x: 0,
-                            y: 2,
+                            x: 3,
+                            y: 5,
                             z: 0
                         },
                         rotation: {
@@ -301,8 +319,8 @@
                     {
                         mesh_id: 0,
                         vector: {
-                            x: -3,
-                            y: 2,
+                            x: 0,
+                            y: 5,
                             z: 0
                         },
                         rotation: {
@@ -321,16 +339,16 @@
                     {
                         mesh_id: 0,
                         vector: {
-                            x: -3,
-                            y: 2,
+                            x: 0,
+                            y: 5,
                             z: 3
                         },
                     },
                     {
                         mesh_id: 1,
                         vector: {
-                            x: 0,
-                            y: 2,
+                            x: 3,
+                            y: 5,
                             z: 3
                         },
                         rotation: {
@@ -343,16 +361,12 @@
                 ]
             }
 
-            dotbim_CreateMeshes(dotbim).forEach(mesh => {
-                scene.add(mesh);
-            });
-
-            dotbim_CreateMeshes().forEach(mesh => {
+            dotbim_CreateMeshes(JSON.stringify(dotbim)).forEach(mesh => {
                 scene.add(mesh);
             });
 
             let dotbim_faces = {
-                schema_version: "1.1.0",
+                schema_version: "1.0.0",
                 meshes: [
                     {
                         mesh_id: 0,
@@ -555,11 +569,11 @@
                         }
                     },
                     {
-                        mesh_id: 2,
+                        mesh_id: 0,
                         vector: {
-                            x: -1,
+                            x: 0,
                             y: 0,
-                            z: 0
+                            z: 1
                         },
                         rotation: {
                             qx: 0,
@@ -568,18 +582,18 @@
                             qw: 1
                         },
                         color: {
-                            r: 255,
-                            g: 150,
-                            b: 150,
+                            r: 50,
+                            g: 255,
+                            b: 50,
                             a: 255
                         }
                     },
                     {
                         mesh_id: 1,
                         vector: {
-                            x: -2,
+                            x: 1,
                             y: 0,
-                            z: 0
+                            z: 1
                         },
                         rotation: {
                             qx: 0,
@@ -588,18 +602,18 @@
                             qw: 1
                         },
                         color: {
-                            r: 255,
-                            g: 100,
+                            r: 100,
+                            g: 255,
                             b: 100,
                             a: 255
                         }
                     },
                     {
-                        mesh_id: 0,
+                        mesh_id: 2,
                         vector: {
-                            x: -3,
+                            x: 2,
                             y: 0,
-                            z: 0
+                            z: 1
                         },
                         rotation: {
                             qx: 0,
@@ -608,16 +622,96 @@
                             qw: 1
                         },
                         color: {
-                            r: 255,
-                            g: 50,
-                            b: 50,
+                            r: 150,
+                            g: 255,
+                            b: 150,
                             a: 255
                         }
-                    }
+                    },
+                    {
+                        mesh_id: 3,
+                        vector: {
+                            x: 3,
+                            y: 0,
+                            z: 1
+                        },
+                        rotation: {
+                            qx: 0,
+                            qy: 0,
+                            qz: 0,
+                            qw: 1
+                        },
+                        color: {
+                            r: 200,
+                            g: 255,
+                            b: 200,
+                            a: 200
+                        }
+                    },
+                    {
+                        mesh_id: 0,
+                        vector: {
+                            x: 0,
+                            y: 0,
+                            z: 2
+                        },
+                        rotation: {
+                            qx: 0,
+                            qy: 0,
+                            qz: 0,
+                            qw: 1
+                        },
+                        face_colors: [255, 50, 50, 255, 50, 50, 50, 50]
+                    },
+                    {
+                        mesh_id: 1,
+                        vector: {
+                            x: 1,
+                            y: 0,
+                            z: 2
+                        },
+                        rotation: {
+                            qx: 0,
+                            qy: 0,
+                            qz: 0,
+                            qw: 1
+                        },
+                        face_colors: [255, 100, 100, 255, 100, 100, 100, 50]
+                    },
+                    {
+                        mesh_id: 2,
+                        vector: {
+                            x: 2,
+                            y: 0,
+                            z: 2
+                        },
+                        rotation: {
+                            qx: 0,
+                            qy: 0,
+                            qz: 0,
+                            qw: 1
+                        },
+                        face_colors: [255, 150, 150, 255, 150, 150, 150, 50]
+                    },
+                    {
+                        mesh_id: 3,
+                        vector: {
+                            x: 3,
+                            y: 0,
+                            z: 2
+                        },
+                        rotation: {
+                            qx: 0,
+                            qy: 0,
+                            qz: 0,
+                            qw: 1
+                        },
+                        face_colors: [255, 200, 200, 200, 200, 200, 200, 50]
+                    },
                 ]
             }
 
-            dotbim_CreateMeshes(dotbim_faces).forEach(mesh => {
+            dotbim_CreateMeshes(JSON.stringify(dotbim_faces)).forEach(mesh => {
                 scene.add(mesh);
             });
 

@@ -10,7 +10,7 @@ Move and test colors for each face using in the mesh object.
 * mesh_id - `number`
 * coordinates - `[x1,y1,z1,x2,y2,z2...]`
 * indices - `[i1,i2,i3,j1,j2,j3...]`
-* colors - `[ir,ig,ib,ia,jr,jg,jb,ja...]`
+* colors - `[ir,ig,ib,ia,jr,jg,jb,ja...]` (optional not oficial)
 
 `colors` could have one default color or one color for each face `(indices.length / 3)`.
 
@@ -19,8 +19,7 @@ Move and test colors for each face using in the mesh object.
 * vector - `{x,y,z}` - `if undefined use {0,0,0}`
 * rotation - `{qx,qy,qz,qw}` - `if undefined use {0,0,0,1}`
 * color - `{r,g,b,a}` - `if undefined use colors default mesh`
-* face_colors - `remove`
-
+* face_colors - `[ir,ig,ib,ia,jr,jg,jb,ja...]` `if undefined use colors default mesh`
 
 In this example the color in the `element` is blending with the color in the mesh, need to remove the `face_colors` from element and move to mesh `colors` and remove the color from element.
 
