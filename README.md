@@ -23,7 +23,7 @@ Move and test colors for each face using in the mesh object.
 * color - `{r,g,b,a}` - `if undefined use colors default mesh`
 * face_colors - `[ir,ig,ib,ia,jr,jg,jb,ja...]` `if undefined use colors default mesh`
 
-In this example the color in the `element` is blending with the color in the mesh, `face_colors` and `color` from element are optional and in the mesh `colors` is optional and does not exist in the oficial [dotbim](https://github.com/paireks/dotbim) schema.
+In this example the color in the `element` is blending with the color in the mesh, `face_colors` and `color` from element are optional and in the mesh `colors` is optional (`colors` does not exist in the oficial [dotbim](https://github.com/paireks/dotbim) schema.)
 
 ## Example
 
@@ -33,6 +33,8 @@ The `index.html` has a simple implementation with the following features.
 * Press Keyboard `1` - Dark Background
 * Press Keyboard `2` - Light Background
 * Press Keyboard `c` - Clear Scene
+* Press Keyboard `n` - Create `dotbim_faces`
+* Press Keyboard `m` - Create `dotbim_cubes`
 
 ## Usage
 
