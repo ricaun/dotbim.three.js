@@ -2,6 +2,8 @@
 
 Test [dotbim](https://github.com/paireks/dotbim) with [three.js](https://github.com/mrdoob/three.js) using release version [r147](https://github.com/mrdoob/three.js/releases/tag/r147).
 
+Here is an [Online Preview](https://htmlpreview.github.io/?https://github.com/ricaun/dotbim.three.js/blob/master/index.html) page where you can drop your BIM file. See the `Example` section below for additional info.
+
 ## dotbim
 
 Move and test colors for each face using in the mesh object.
@@ -25,7 +27,7 @@ In this example the color in the `element` is blending with the color in the mes
 
 ## Example
 
-The `index.html` has a simple offline implementation with the following features.
+The `index.html` has a simple implementation with the following features.
 
 * Load `.bim` files using `Drag-and-Drop`
 * Press Keyboard `1` - Dark Background
