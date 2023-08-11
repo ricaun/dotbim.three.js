@@ -2,6 +2,8 @@
 
 Test [dotbim](https://github.com/paireks/dotbim) with [three.js](https://github.com/mrdoob/three.js) using release version [r147](https://github.com/mrdoob/three.js/releases/tag/r147).
 
+Here is an [Online Preview](https://htmlpreview.github.io/?https://github.com/ricaun/dotbim.three.js/blob/master/index.html) page where you can drop your BIM file. See the `Example` section below for additional info.
+
 ## dotbim
 
 Move and test colors for each face using in the mesh object.
@@ -21,16 +23,18 @@ Move and test colors for each face using in the mesh object.
 * color - `{r,g,b,a}` - `if undefined use colors default mesh`
 * face_colors - `[ir,ig,ib,ia,jr,jg,jb,ja...]` `if undefined use colors default mesh`
 
-In this example the color in the `element` is blending with the color in the mesh, `face_colors` and `color` from element are optional and in the mesh `colors` is optional and does not exist in the oficial [dotbim](https://github.com/paireks/dotbim) schema.
+In this example the color in the `element` is blending with the color in the mesh, `face_colors` and `color` from element are optional and in the mesh `colors` is optional (`colors` does not exist in the oficial [dotbim](https://github.com/paireks/dotbim) schema.)
 
 ## Example
 
-The `index.html` has a simple offline implementation with the following features.
+The `index.html` has a simple implementation with the following features.
 
 * Load `.bim` files using `Drag-and-Drop`
 * Press Keyboard `1` - Dark Background
 * Press Keyboard `2` - Light Background
 * Press Keyboard `c` - Clear Scene
+* Press Keyboard `n` - Create `dotbim_faces`
+* Press Keyboard `m` - Create `dotbim_cubes`
 
 ## Usage
 

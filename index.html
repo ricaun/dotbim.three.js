@@ -21,6 +21,9 @@
     <script src="./js/dotbim.three.js"></script>
     <script src="./js/three.min.js"></script>
     <script src="./js/controls/OrbitControls.js"></script>
+
+    <!--  models.js  -->
+    <script src="./js/models.js"></script>
 </head>
 
 <body>
@@ -95,6 +98,12 @@
             if (event.key === "c") {
                 Clear();
             }
+            if (event.key === "n") {
+                LoadDotBim(JSON.stringify(dotbim_faces));
+            }
+            if (event.key === "m") {
+                LoadDotBim(JSON.stringify(dotbim_cubes));
+            }
             render();
         });
 
@@ -122,6 +131,7 @@
         };
 
         render();
+        renderLoop();
 
         // OrbitControls
         var controls = new THREE.OrbitControls(camera, renderer.domElement);
@@ -129,612 +139,10 @@
         controls.update();
 
         // Render
-        window.onload = function () {
-
-            renderLoop();
-
-            let dotbim = {
-                schema_version: "1.0.0",
-                meshes: [
-                    {
-                        mesh_id: 0,
-                        coordinates: [
-                            -1,
-                            -1,
-                            -1,
-                            1,
-                            -1,
-                            -1,
-                            1,
-                            -1,
-                            1,
-                            -1,
-                            -1,
-                            1,
-                            -1,
-                            1,
-                            -1,
-                            1,
-                            1,
-                            -1,
-                            1,
-                            1,
-                            1,
-                            -1,
-                            1,
-                            1
-                        ],
-                        indices: [
-                            0,
-                            1,
-                            2,
-                            0,
-                            2,
-                            3,
-                            0,
-                            1,
-                            4,
-                            1,
-                            4,
-                            5,
-                            0,
-                            4,
-                            3,
-                            4,
-                            3,
-                            7,
-                            1,
-                            2,
-                            5,
-                            2,
-                            5,
-                            6,
-                            2,
-                            3,
-                            7,
-                            2,
-                            6,
-                            7,
-                            4,
-                            5,
-                            7,
-                            5,
-                            6,
-                            7
-                        ],
-                        colors: [
-                            0, 0, 255, 255,
-                            0, 0, 255, 255,
-                            200, 0, 0, 255,
-                            200, 0, 0, 255,
-                            200, 200, 200, 255,
-                            200, 200, 200, 255,
-                            0, 255, 255, 255,
-                            0, 255, 255, 255,
-                            255, 0, 255, 255,
-                            255, 0, 255, 255,
-                            0, 255, 0, 255,
-                            0, 255, 0, 255,
-                        ]
-                    },
-                    {
-                        mesh_id: 1,
-                        coordinates: [
-                            -1,
-                            -1,
-                            -1,
-                            1,
-                            -1,
-                            -1,
-                            1,
-                            -1,
-                            1,
-                            -1,
-                            -1,
-                            1,
-                            -1,
-                            1,
-                            -1,
-                            1,
-                            1,
-                            -1,
-                            1,
-                            1,
-                            1,
-                            -1,
-                            1,
-                            1
-                        ],
-                        indices: [
-                            0,
-                            1,
-                            2,
-                            0,
-                            2,
-                            3,
-                            0,
-                            1,
-                            4,
-                            1,
-                            4,
-                            5,
-                            0,
-                            4,
-                            3,
-                            4,
-                            3,
-                            7,
-                            1,
-                            2,
-                            5,
-                            2,
-                            5,
-                            6,
-                            2,
-                            3,
-                            7,
-                            2,
-                            6,
-                            7,
-                            4,
-                            5,
-                            7,
-                            5,
-                            6,
-                            7
-                        ],
-                        colors: [
-                            200, 0, 0, 255,
-                            200, 0, 0, 255,
-                            0, 200, 0, 255,
-                            0, 200, 0, 255,
-                            0, 0, 200, 255,
-                            0, 0, 200, 255,
-                            100, 100, 0, 255,
-                            100, 100, 0, 255,
-                            100, 0, 100, 255,
-                            100, 0, 100, 255,
-                            0, 100, 100, 255,
-                            0, 100, 100, 255,
-                        ]
-                    }
-                ],
-                elements: [
-                    {
-                        mesh_id: 0,
-                        vector: {
-                            x: 3,
-                            y: 5,
-                            z: 0
-                        },
-                        rotation: {
-                            qx: 0,
-                            qy: 0,
-                            qz: 0,
-                            qw: 1
-                        },
-                        color: {
-                            r: 255,
-                            g: 255,
-                            b: 255,
-                            a: 255
-                        },
-                        face_colors: [
-                            200, 0, 0, 255,
-                            200, 0, 0, 255,
-                            0, 200, 0, 255,
-                            0, 200, 0, 255,
-                            0, 0, 200, 255,
-                            0, 0, 200, 255,
-                            100, 100, 0, 255,
-                            100, 100, 0, 255,
-                            100, 0, 100, 255,
-                            100, 0, 100, 255,
-                            0, 100, 100, 255,
-                            0, 100, 100, 255]
-                    },
-                    {
-                        mesh_id: 0,
-                        vector: {
-                            x: 0,
-                            y: 5,
-                            z: 0
-                        },
-                        rotation: {
-                            qx: 0,
-                            qy: 0,
-                            qz: 0,
-                            qw: 1
-                        },
-                        color: {
-                            r: 255,
-                            g: 100,
-                            b: 100,
-                            a: 255
-                        }
-                    },
-                    {
-                        mesh_id: 0,
-                        vector: {
-                            x: 0,
-                            y: 5,
-                            z: 3
-                        },
-                    },
-                    {
-                        mesh_id: 1,
-                        vector: {
-                            x: 3,
-                            y: 5,
-                            z: 3
-                        },
-                        rotation: {
-                            qx: 0,
-                            qy: 0,
-                            qz: 0,
-                            qw: 1
-                        },
-                    }
-                ]
-            }
-
-            dotbim_CreateMeshes(JSON.stringify(dotbim)).forEach(mesh => {
-                scene.add(mesh);
-            });
-
-            let dotbim_faces = {
-                schema_version: "1.0.0",
-                meshes: [
-                    {
-                        mesh_id: 0,
-                        coordinates: [
-                            0,
-                            0,
-                            0,
-                            1,
-                            0,
-                            0,
-                            1,
-                            1,
-                            0,
-                            0,
-                            1,
-                            0
-                        ],
-                        indices: [
-                            0,
-                            1,
-                            2,
-                            0,
-                            2,
-                            3
-                        ]
-                    },
-                    {
-                        mesh_id: 1,
-                        coordinates: [
-                            0,
-                            0,
-                            0,
-                            1,
-                            0,
-                            0,
-                            1,
-                            1,
-                            0,
-                            0,
-                            1,
-                            0
-                        ],
-                        indices: [
-                            0,
-                            1,
-                            2,
-                            0,
-                            2,
-                            3
-                        ],
-                        colors: [
-                            150,
-                            0,
-                            150,
-                            255
-                        ]
-                    },
-                    {
-                        mesh_id: 2,
-                        coordinates: [
-                            0,
-                            0,
-                            0,
-                            1,
-                            0,
-                            0,
-                            1,
-                            1,
-                            0,
-                            0,
-                            1,
-                            0
-                        ],
-                        indices: [
-                            0,
-                            1,
-                            2,
-                            0,
-                            2,
-                            3
-                        ],
-                        colors: [
-                            0,
-                            0,
-                            150,
-                            255,
-                            0,
-                            100,
-                            200,
-                            255
-                        ]
-                    },
-                    {
-                        mesh_id: 3,
-                        coordinates: [
-                            0,
-                            0,
-                            0,
-                            1,
-                            0,
-                            0,
-                            1,
-                            1,
-                            0,
-                            0,
-                            1,
-                            0
-                        ],
-                        indices: [
-                            0,
-                            1,
-                            2,
-                            0,
-                            2,
-                            3
-                        ],
-                        colors: [
-                            150,
-                            0,
-                            0,
-                            255,
-                            200,
-                            0,
-                            0,
-                            255,
-                            250,
-                            0,
-                            0,
-                            255,
-                            0,
-                            150,
-                            0,
-                            255,
-                            0,
-                            200,
-                            0,
-                            255,
-                            0,
-                            250,
-                            0,
-                            255
-                        ]
-                    }
-                ],
-                elements: [
-                    {
-                        mesh_id: 0,
-                        vector: {
-                            x: 0,
-                            y: 0,
-                            z: 0
-                        },
-                        rotation: {
-                            qx: 0,
-                            qy: 0,
-                            qz: 0,
-                            qw: 1
-                        }
-                    },
-                    {
-                        mesh_id: 1,
-                        vector: {
-                            x: 1,
-                            y: 0,
-                            z: 0
-                        },
-                        rotation: {
-                            qx: 0,
-                            qy: 0,
-                            qz: 0,
-                            qw: 1
-                        }
-                    },
-                    {
-                        mesh_id: 2,
-                        vector: {
-                            x: 2,
-                            y: 0,
-                            z: 0
-                        },
-                        rotation: {
-                            qx: 0,
-                            qy: 0,
-                            qz: 0,
-                            qw: 1
-                        }
-                    },
-                    {
-                        mesh_id: 3,
-                        vector: {
-                            x: 3,
-                            y: 0,
-                            z: 0
-                        },
-                        rotation: {
-                            qx: 0,
-                            qy: 0,
-                            qz: 0,
-                            qw: 1
-                        }
-                    },
-                    {
-                        mesh_id: 0,
-                        vector: {
-                            x: 0,
-                            y: 0,
-                            z: 1
-                        },
-                        rotation: {
-                            qx: 0,
-                            qy: 0,
-                            qz: 0,
-                            qw: 1
-                        },
-                        color: {
-                            r: 50,
-                            g: 255,
-                            b: 50,
-                            a: 255
-                        }
-                    },
-                    {
-                        mesh_id: 1,
-                        vector: {
-                            x: 1,
-                            y: 0,
-                            z: 1
-                        },
-                        rotation: {
-                            qx: 0,
-                            qy: 0,
-                            qz: 0,
-                            qw: 1
-                        },
-                        color: {
-                            r: 100,
-                            g: 255,
-                            b: 100,
-                            a: 255
-                        }
-                    },
-                    {
-                        mesh_id: 2,
-                        vector: {
-                            x: 2,
-                            y: 0,
-                            z: 1
-                        },
-                        rotation: {
-                            qx: 0,
-                            qy: 0,
-                            qz: 0,
-                            qw: 1
-                        },
-                        color: {
-                            r: 150,
-                            g: 255,
-                            b: 150,
-                            a: 255
-                        }
-                    },
-                    {
-                        mesh_id: 3,
-                        vector: {
-                            x: 3,
-                            y: 0,
-                            z: 1
-                        },
-                        rotation: {
-                            qx: 0,
-                            qy: 0,
-                            qz: 0,
-                            qw: 1
-                        },
-                        color: {
-                            r: 200,
-                            g: 255,
-                            b: 200,
-                            a: 200
-                        }
-                    },
-                    {
-                        mesh_id: 0,
-                        vector: {
-                            x: 0,
-                            y: 0,
-                            z: 2
-                        },
-                        rotation: {
-                            qx: 0,
-                            qy: 0,
-                            qz: 0,
-                            qw: 1
-                        },
-                        face_colors: [255, 50, 50, 255, 50, 50, 50, 50]
-                    },
-                    {
-                        mesh_id: 1,
-                        vector: {
-                            x: 1,
-                            y: 0,
-                            z: 2
-                        },
-                        rotation: {
-                            qx: 0,
-                            qy: 0,
-                            qz: 0,
-                            qw: 1
-                        },
-                        face_colors: [255, 100, 100, 255, 100, 100, 100, 50]
-                    },
-                    {
-                        mesh_id: 2,
-                        vector: {
-                            x: 2,
-                            y: 0,
-                            z: 2
-                        },
-                        rotation: {
-                            qx: 0,
-                            qy: 0,
-                            qz: 0,
-                            qw: 1
-                        },
-                        face_colors: [255, 150, 150, 255, 150, 150, 150, 50]
-                    },
-                    {
-                        mesh_id: 3,
-                        vector: {
-                            x: 3,
-                            y: 0,
-                            z: 2
-                        },
-                        rotation: {
-                            qx: 0,
-                            qy: 0,
-                            qz: 0,
-                            qw: 1
-                        },
-                        face_colors: [255, 200, 200, 200, 200, 200, 200, 50]
-                    },
-                ]
-            }
-
-            dotbim_CreateMeshes(JSON.stringify(dotbim_faces)).forEach(mesh => {
-                scene.add(mesh);
-            });
-
-            zoomCameraToSelection(camera, controls, scene.children);
-        }
-
+        //window.onload = function () {
+            //setTimeout("Clear()", 500);
+        //}
+        
         // Resize
         window.addEventListener("resize", function () {
             var aspect = window.innerWidth / window.innerHeight;
@@ -786,115 +194,6 @@
             controls.update();
         }
 
-        /*
-
-        var CameraReset = function () {
-
-            // console.log(JSON.stringify(camera.position));
-            camera.position.set(10, -10, 10);
-
-            if (camera.zoom) {
-                camera.zoom = 1;
-            }
-
-            controls.reset();
-            render();
-        };
-
-        var SetAntialias = function (value) {
-            renderer.antialias = value;
-            render();
-        };
-
-        var AddLine = function (value) {
-            var pointsModel = JSON.parse(value);
-            // console.log(JSON.stringify(pointsModel));
-
-            const points = [];
-            for (var i = 0; i < pointsModel.Vectors.length; i++) {
-                var point = pointsModel.Vectors[i];
-                points.push(new THREE.Vector3(point.X, point.Y, point.Z));
-                console.log(JSON.stringify(point));
-            }
-
-            var color = "#eeeeee";
-            if (pointsModel.Color) color = pointsModel.Color;
-
-            var geometry = new THREE.BufferGeometry().setFromPoints(points);
-            var line = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: color }));
-            scene.add(line);
-
-            render();
-        };
-
-        var AddMesh = function (value) {
-            //console.log(value);
-            var meshModel = JSON.parse(value);
-
-            var geometry = new THREE.BufferGeometry();
-
-            var facesModel = [];
-            if (meshModel.Faces) {
-                facesModel = meshModel.Faces;
-                //console.log(facesModel)
-                //console.log(JSON.stringify(facesModel));
-            }
-            else {
-                facesModel.push(meshModel);
-            }
-
-            const indices = [];
-            const vertices = [];
-            const normals = [];
-            const colors = [];
-
-            facesModel.forEach(face => {
-
-                for (var i = 0; i < face.Indexes.length; i += 1) {
-                    var point = face.Vertices[face.Indexes[i]];
-                    vertices.push(point.X, point.Y, point.Z);
-                    //console.log(JSON.stringify(point));
-
-                    var normal = face.Normals[i];
-                    normals.push(normal.X, normal.Y, normal.Z);
-
-                    var color = new THREE.Color(face.Colors[i]);
-                    colors.push(color.r, color.g, color.b);
-
-                    indices.push(indices.length);
-                }
-
-            });
-
-            geometry.setIndex(indices);
-            geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
-            geometry.setAttribute('normal', new THREE.Float32BufferAttribute(normals, 3));
-            geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
-            geometry.computeBoundingSphere();
-
-            var material = new THREE.MeshNormalMaterial();
-
-            // MeshStandardMaterial
-            // MeshPhongMaterial
-            material = new THREE.MeshPhongMaterial({
-                side: THREE.DoubleSide,
-                vertexColors: true,
-                //color: "#ee1212"
-            });
-
-            //if (meshModel.Color)
-            //    material.color = meshModel.Color;
-
-            //material.side = THREE.DoubleSide;
-
-            var mesh = new THREE.Mesh(geometry, material);
-            scene.add(mesh);
-
-            render();
-        };
-
-        */
-
         var LoadDotBim = function (dotbim) {
             //console.log(dotbim)
             dotbim_CreateMeshes(dotbim).forEach(mesh => {
@@ -914,6 +213,35 @@
             scene.add(new THREE.AmbientLight(0x555555));
             render();
         };
+
+        var CreateText = function () {
+            var canvas1 = document.createElement('canvas');
+            var context1 = canvas1.getContext('2d');
+            context1.font = "Bold 25px Arial";
+            context1.fillStyle = "rgba(150,150,150,1)";
+            context1.fillText('Drop your BIM file', 0, 80);
+            context1.fillText('on the page...', 0, 104);
+
+            // canvas contents will be used for a texture
+            var texture1 = new THREE.Texture(canvas1)
+            texture1.needsUpdate = true;
+            
+            var material1 = new THREE.MeshBasicMaterial({
+                map: texture1,
+                side: THREE.DoubleSide
+            });
+            material1.transparent = true;
+
+            var mesh1 = new THREE.Mesh(new THREE.PlaneGeometry(10, 10), material1 );
+            mesh1.position.set(4, -2, 0);
+
+            scene.add(mesh1)
+            render();
+        }
+
+        CreateText();
+        //LoadDotBim(JSON.stringify(dotbim_cubes));
+        LoadDotBim(JSON.stringify(dotbim_faces));
 
     </script>
 </body>
