@@ -26,8 +26,7 @@
     <script src="./js/models.js"></script>
 </head>
 
-<body style="overflow: hidden;">
-    <div style="color: black; text-align: center; margin-top: 2px; padding: 3px;">Drop your BIM file on the page...</div>
+<body>
     <script>
         // DefaultUp
         THREE.Object3D.DefaultUp.set(0, 0, 1);
@@ -132,6 +131,7 @@
         };
 
         render();
+        renderLoop();
 
         // OrbitControls
         var controls = new THREE.OrbitControls(camera, renderer.domElement);
@@ -139,13 +139,10 @@
         controls.update();
 
         // Render
-        window.onload = function () {
-            renderLoop();
-
-            LoadDotBim(JSON.stringify(dotbim_cubes));
-            setTimeout("Clear()", 500);
-        }
-
+        //window.onload = function () {
+            //setTimeout("Clear()", 500);
+        //}
+        
         // Resize
         window.addEventListener("resize", function () {
             var aspect = window.innerWidth / window.innerHeight;
@@ -215,8 +212,36 @@
             scene.add(new THREE.HemisphereLight(0xcccccc, 0x111111));
             scene.add(new THREE.AmbientLight(0x555555));
             render();
-            LoadDotBim(JSON.stringify(dotbim_faces));
         };
+
+        var CreateText = function () {
+            var canvas1 = document.createElement('canvas');
+            var context1 = canvas1.getContext('2d');
+            context1.font = "Bold 25px Arial";
+            context1.fillStyle = "rgba(150,150,150,1)";
+            context1.fillText('Drop your BIM file', 0, 80);
+            context1.fillText('on the page...', 0, 104);
+
+            // canvas contents will be used for a texture
+            var texture1 = new THREE.Texture(canvas1)
+            texture1.needsUpdate = true;
+            
+            var material1 = new THREE.MeshBasicMaterial({
+                map: texture1,
+                side: THREE.DoubleSide
+            });
+            material1.transparent = true;
+
+            var mesh1 = new THREE.Mesh(new THREE.PlaneGeometry(10, 10), material1 );
+            mesh1.position.set(4, -2, 0);
+
+            scene.add(mesh1)
+            render();
+        }
+
+        CreateText();
+        //LoadDotBim(JSON.stringify(dotbim_cubes));
+        LoadDotBim(JSON.stringify(dotbim_faces));
 
     </script>
 </body>
