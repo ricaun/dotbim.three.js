@@ -33,16 +33,26 @@ The `index.html` has a simple implementation with the following features.
 * Press Keyboard `1` - Dark Background
 * Press Keyboard `2` - Light Background
 * Press Keyboard `c` - Clear Scene
-* Press Keyboard `n` - Create `dotbim_faces`
-* Press Keyboard `m` - Create `dotbim_cubes`
+* Press Keyboard `n` - Create `dotbim_faces` sample
+* Press Keyboard `m` - Create `dotbim_cubes` sample
 
 ## Usage
 
 Download either `dotbim.three.js` or `dotbim.three.min.js` file. Use it directly in your browser application:
 
-`<script src="./path-to-dotbim-file/dotbim.three.min.js"></script>`
+```js
+<script src="./path-to-dotbim-file/dotbim.three.min.js"></script>
+```
 
-Then call its function as in the following example:
+Then call the function `dotbim_CreateMeshes` to convert a `dotbim_text_content` to `THREE.Object3D` array as in the following example:
+
+```js
+dotbim_CreateMeshes(dotbim_text_content).forEach(bim_mesh => {
+    scene.add(bim_mesh);
+});
+```
+
+Or use the `THREE.FileLoader` function as in the following example:
 
 ```js
 function loadBIM() {
@@ -81,8 +91,6 @@ function loadBIM() {
 
       mesh.add( bim_mesh );
     });
-
-    mesh.rotateX( - Math.PI / 2 );
 
     scene.add( mesh );
   });

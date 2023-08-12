@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="dotbim files in the browser with three.js">
     <title>dotbim.three.js</title>
     <style>
         body {
@@ -23,7 +24,7 @@
     <script src="./js/controls/OrbitControls.js"></script>
 
     <!--  models.js  -->
-    <script src="./js/models.js"></script>
+    <script src="./js/samples.js"></script>
 </head>
 
 <body>
@@ -138,11 +139,6 @@
         controls.addEventListener('change', render);
         controls.update();
 
-        // Render
-        //window.onload = function () {
-            //setTimeout("Clear()", 500);
-        //}
-        
         // Resize
         window.addEventListener("resize", function () {
             var aspect = window.innerWidth / window.innerHeight;
