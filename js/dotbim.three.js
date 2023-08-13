@@ -146,7 +146,7 @@ function createFaceColors(color4arrary, repeat = 3, max = 0) {
 
 function convertTHREEColorRGB(r,g,b)
 {
-    return new THREE.Color(`rgb(${r}, ${g}, ${b})`);
+    return new THREE.Color(r/255.0, g/255.0, b/255.0);
 }
 
 function convertColorAlpha(alpha)
