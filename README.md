@@ -4,6 +4,8 @@ Test [dotbim](https://github.com/paireks/dotbim) with [three.js](https://github.
 
 Here is an [Online Preview](https://htmlpreview.github.io/?https://github.com/ricaun/dotbim.three.js/blob/master/index.html) page where you can drop your BIM file. See the `Example` section below for additional info.
 
+<a href="https://htmlpreview.github.io/?https://github.com/ricaun/dotbim.three.js/blob/master/index.html"><image src="images/preview.png" alt="Online Preview"></image></a>
+
 ## dotbim
 
 Move and test colors for each face using in the mesh object.
