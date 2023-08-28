@@ -20,7 +20,19 @@ function dotbim_CreateMeshes(dotbim) {
 
     const geometrys = dotbim_Meshes2Geometrys(meshes);
 
-    return dotbim_Elemments2Meshes(elements, geometrys);
+    const bim_meshes = new THREE.Group();
+    const bim_edges = new THREE.Group();
+
+    dotbim_Elemments2Meshes(elements, geometrys).forEach( bim_mesh => {
+        bim_mesh[ 'name' ] = 'mesh_' + bim_mesh.id;
+        bim_meshes.add( bim_mesh );
+        if ( bim_mesh.edges ) bim_edges.add( bim_mesh.edges );
+    });
+
+    if ( bim_meshes.children.length > 1 ) bim_meshes.rotateX( - Math.PI / 2 );
+    if ( bim_edges.children.length > 0 ) bim_meshes.userData[ 'edges' ] = bim_edges;
+
+    return bim_meshes;
 }
 
 function dotbim_Elemments2Meshes(elements, geometrys) {
@@ -37,11 +49,11 @@ function dotbim_Elemment2Mesh(element, geometrys) {
         side: THREE.DoubleSide,
         flatShading: false,
         transparent: true,
-        color: 0x333333
+        color: 0xCCCCCC
     });
 
     if (color) {
-        if (color.r === 0 & color.g === 0 & color.b === 0 & color.a === 0) color = null;
+        if (color.r === 0 && color.g === 0 && color.b === 0 && color.a === 0) color = null;
     }
 
     // Support `face_colors` in element
@@ -60,7 +72,7 @@ function dotbim_Elemment2Mesh(element, geometrys) {
         material.transparent = material.opacity < 1.0;
     }
 
-    // Force to use geometry color is exist ('colors')
+    // Force to use geometry color if exists ('colors')
     if (geometry.getAttribute('color')) {
         material.color = undefined;
         material.opacity = 1.0;
@@ -108,17 +120,6 @@ function dotbim_Mesh2GeometryColor(mesh) {
         geometry.setAttribute('color', new THREE.Float32BufferAttribute(buffer_colors, 4));
     }
     
-    geometry.computeVertexNormals();
-    return geometry;
-}
-
-function dotbim_Mesh2Geometry(mesh) {
-    const { mesh_id, coordinates, indices } = mesh;
-    const geometry = new THREE.BufferGeometry();
-
-    geometry.id = mesh_id;
-    geometry.setIndex(indices);
-    geometry.setAttribute('position', new THREE.Float32BufferAttribute(coordinates, 3));
     geometry.computeVertexNormals();
     return geometry;
 }
