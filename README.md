@@ -14,7 +14,7 @@ Move and test colors for each face using in the mesh object.
 * mesh_id - `number`
 * coordinates - `[x1,y1,z1,x2,y2,z2...]`
 * indices - `[i1,i2,i3,j1,j2,j3...]`
-* colors - `[ir,ig,ib,ia,jr,jg,jb,ja...]` (optional not oficial)
+* colors - `[ir,ig,ib,ia,jr,jg,jb,ja...]` (optional not official)
 
 `colors` could have one default color or one color for each face `(indices.length / 3)`.
 
@@ -38,7 +38,7 @@ The `index.html` has a simple implementation with the following features.
 * Press Keyboard `n` - Create `dotbim_faces` sample
 * Press Keyboard `m` - Create `dotbim_cubes` sample
 
-## Usage
+## Usage ( dotbim files )
 
 Download either `dotbim.three.js` or `dotbim.three.min.js` file. Use it directly in your browser application:
 
@@ -67,39 +67,45 @@ function loadBIM() {
 
   new THREE.FileLoader().load( selected_bim_file, async function( text ) {
 
-    let mesh_count = 1;
-
     // the following is the actual function from the dotbim.three.js file
+    // which exports group of meshes that can be added directly to the scene
+    // or passed to the user created mesh object for easier manipulation
 
-    dotbim_CreateMeshes( text ).forEach( bim_mesh => {
+    mesh = dotbim_CreateMeshes( text );
 
-      // name the mesh if required for any later code
+    // store the internally created group of edges if required
 
-      if (bim_mesh.name) {
-        if (bim_mesh.name === '') {
-          bim_mesh.name = 'mesh_' + mesh_count;
-          mesh_count += 1;
-        }
-      } else {
-        bim_mesh[ 'name' ] = 'mesh_' + mesh_count;
-        mesh_count += 1;
-      }
-
-      // store the internally created edges if required
-
-      if ( bim_mesh.edges ) edges.add( bim_mesh.edges );
-
-      // add the bim_mesh to the model that will be displayed
-
-      mesh.add( bim_mesh );
-    });
+    if ( mesh.userData.edges ) edges = mesh.userData.edges;
 
     scene.add( mesh );
+
   });
 }
 ```
 
-Practical usage example can be seen in the [STEP Viewer](https://githubdragonfly.github.io/viewers/templates/STEP%20Viewer.html) with the code available in this [repository](https://github.com/GitHubDragonFly/GitHubDragonFly.github.io/tree/main/viewers/).
+Practical usage example can be seen in the [mobile STEP Viewer](https://githubdragonfly.github.io/viewers/templates/Mobile/MSTEP%20Viewer.html) with the code available [here](https://github.com/GitHubDragonFly/GitHubDragonFly.github.io/tree/main/viewers/templates/Mobile/).
+
+## Usage ( BIMLoader.js )
+
+Download `non-module` version of BIMLoader.js. Use it directly in your browser application:
+
+```js
+<script src="./path-to-loader-file/BIMLoader.js"></script>
+```
+
+Then use the three.js standard approach to load a model:
+
+```js
+new BIMLoader().load( 'models/house.bim', bim => scene.add( bim ) );
+```
+
+Practical usage example can be seen in the [STEP Viewer](https://githubdragonfly.github.io/viewers/templates/STEP%20Viewer.html) with the code available [here](https://github.com/GitHubDragonFly/GitHubDragonFly.github.io/tree/main/viewers/templates/).
+
+With the `module` version of BIMLoader.js process the import:
+
+```js
+import { BIMLoader } from './path-to-loader-file/BIMLoader.js';
+```
 
 ## License
 
