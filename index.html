@@ -96,6 +96,10 @@
             if (event.key === "2") {
                 renderer.setClearColor("#fefefe");
             }
+            if (event.key === "z") {
+                zoomCameraToSelection(camera, controls, scene.children);
+                render();
+            }
             if (event.key === "c") {
                 Clear();
             }
@@ -198,7 +202,7 @@
             });
             var end = new Date().getTime();
             var time = end - start;
-            console.log('Execution time: ' + time);
+            console.log('LoadDotBim time: ' + time);
 
             zoomCameraToSelection(camera, controls, scene.children);
             render();
