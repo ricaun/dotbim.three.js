@@ -192,9 +192,14 @@
 
         var LoadDotBim = function (dotbim) {
             //console.log(dotbim)
+            var start = new Date().getTime()
             dotbim_CreateMeshes(dotbim).forEach(mesh => {
                 scene.add(mesh);
             });
+            var end = new Date().getTime();
+            var time = end - start;
+            console.log('Execution time: ' + time);
+
             zoomCameraToSelection(camera, controls, scene.children);
             render();
         };
@@ -234,6 +239,56 @@
             scene.add(mesh1)
             render();
         }
+/*
+{
+    
+        const color = new THREE.Color(0x121212);
+        const amount = 5;
+		const count = Math.pow( amount, 3 );
+        const geometry = new THREE.IcosahedronGeometry( 0.5, 3 );
+        let material = new THREE.MeshPhongMaterial({ 
+            side: THREE.DoubleSide,
+            flatShading: false,
+            transparent: true,
+            color: 0x121212,
+        });
+
+        material.color = undefined;
+        material.opacity = 1.0;
+        material.transparent = true;
+        //material.vertexColors = true;
+
+        let mesh = new THREE.InstancedMesh( geometry, material, count );
+
+        let i = 0;
+        const offset = ( amount - 1 ) / 2;
+
+        const matrix = new THREE.Matrix4();
+
+        for ( let x = 0; x < amount; x ++ ) {
+
+            for ( let y = 0; y < amount; y ++ ) {
+
+                for ( let z = 0; z < amount; z ++ ) {
+
+                    matrix.setPosition( offset - x, offset - y, offset - z - 10 );
+
+                    mesh.setMatrixAt( i, matrix );
+                    //mesh.setColorAt( i, color );
+                    mesh.setColorAt( i, new THREE.Color(x/amount,y/amount,z/amount) );
+
+                    i ++;
+
+                }
+
+            }
+
+        }
+
+        scene.add( mesh );
+        scene.add( mesh );
+}*/
+
 
         CreateText();
         //LoadDotBim(JSON.stringify(dotbim_cubes));
