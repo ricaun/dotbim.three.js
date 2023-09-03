@@ -192,9 +192,14 @@
 
         var LoadDotBim = function (dotbim) {
             //console.log(dotbim)
+            var start = new Date().getTime()
             dotbim_CreateMeshes(dotbim).forEach(mesh => {
                 scene.add(mesh);
             });
+            var end = new Date().getTime();
+            var time = end - start;
+            console.log('LoadDotBim time: ' + time);
+
             zoomCameraToSelection(camera, controls, scene.children);
             render();
         };
