@@ -58,7 +58,7 @@ Or use the `THREE.FileLoader` function as in the following example:
 
 ```js
 function loadBIM() {
-  // previously created: var scene = new THREE.Scene(), mesh = new THREE.Object3D(), edges = new THREE.Group();
+  // previously created: var scene = new THREE.Scene(), mesh = new THREE.Object3D();
   // selected_bim_file in this case would represent an actual URL to the BIM model
   // for local file browsing it would have to be replaced with:
   //    URL.createObjectURL( selected_bim_file )
@@ -72,10 +72,6 @@ function loadBIM() {
     // or passed to the user created mesh object for easier manipulation
 
     mesh = dotbim_CreateMeshes( text );
-
-    // store the internally created group of edges if required
-
-    if ( mesh.userData.edges ) edges = mesh.userData.edges;
 
     scene.add( mesh );
 
